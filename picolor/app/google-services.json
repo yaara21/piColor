@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "629922090761",
+    "project_id": "coloringapp-a530a",
+    "storage_bucket": "coloringapp-a530a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629922090761:android:ade0318763ada8a10e8dd8",
+        "android_client_info": {
+          "package_name": "com.picolor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629922090761-dtd2pttajjh8qie0a77g6nfqvve25npe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp5IKMvEMAok1ZN1_56mFuFTmaO-O4Mdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629922090761-dtd2pttajjh8qie0a77g6nfqvve25npe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
