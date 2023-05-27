@@ -41,8 +41,6 @@ public class publishedActivity extends AppCompatActivity {
     private StorageReference pStorageRef;
     private FirebaseStorage pStorage;
 
-//    private int SERVER_PORT;
-//    private String SERVER_IP;
     private DatabaseReference pRef;
 
     @Override
@@ -51,8 +49,6 @@ public class publishedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_published);
 
         myLayout = (LinearLayout)findViewById(R.id.pLayout);
-//        SERVER_PORT = 2106;
-//        SERVER_IP = "192.168.1.248";
         pStorage = FirebaseStorage.getInstance();
         pStorageRef = pStorage.getReference();
         pRef = FirebaseDatabase.getInstance().getReference().child("online");
@@ -105,6 +101,7 @@ public class publishedActivity extends AppCompatActivity {
         }).start();
     }
 
+    //retrieve published photos names and sends to show
     private void getNames(String command){
         pRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -156,13 +153,13 @@ public class publishedActivity extends AppCompatActivity {
     private void handleNext(List<String> photosNames){
         for (String photo : photosNames){
             ImageView cImageView = new ImageView(publishedActivity.this);
+            //parameters for image view size and place
             LinearLayout.LayoutParams par = new LinearLayout.LayoutParams(765, 765);
             par.setMargins(5, 10, 5, 10);
             cImageView.setLayoutParams(par);
             //add the new photo up:
             myLayout.addView(cImageView, 0);
             showImage(photo, cImageView);
-
         }
 
     }

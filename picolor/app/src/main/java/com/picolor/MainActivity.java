@@ -21,9 +21,6 @@ import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private static final int PERMISSION_REQUEST_CODE = 200;
-//    private static final int PICK_IMAGE_REQUEST = 100;
-//    private static final int REQUEST_IMAGE_CAPTURE = 101;
 
     private Button mBtnPickImage;
     private Button mBtnAlbum;

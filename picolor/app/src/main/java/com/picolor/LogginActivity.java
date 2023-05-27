@@ -29,8 +29,7 @@ public class LogginActivity extends AppCompatActivity {
     private Button btnLog;
     private EditText lMail;
     private EditText lPassword;
-    private FirebaseAuth lAuth;
-    private DatabaseReference cRef;
+    private static final FirebaseAuth lAuth = FirebaseAuth.getInstance();
 
 
     @Override
@@ -42,8 +41,6 @@ public class LogginActivity extends AppCompatActivity {
         lPassword = findViewById(R.id.lEnterPassword);
         btnCreateAcc = (Button) findViewById(R.id.lBtnCreate);
         btnLog = findViewById(R.id.lBtnLog);
-        lAuth = FirebaseAuth.getInstance();
-        cRef = FirebaseDatabase.getInstance().getReference().child("users");
 
         //sends user to 'create account'
         btnCreateAcc.setOnClickListener(new View.OnClickListener() {

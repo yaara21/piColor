@@ -26,8 +26,8 @@ public class CreateAcActivity extends AppCompatActivity {
     private EditText cMail;
     private EditText cPassword;
     private Button cBtnCreate;
-    private FirebaseAuth cAuth;
-    private DatabaseReference cRef;
+    private static final FirebaseAuth cAuth = FirebaseAuth.getInstance();
+    private static final DatabaseReference cRef = FirebaseDatabase.getInstance().getReference().child("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,6 @@ public class CreateAcActivity extends AppCompatActivity {
         cMail = findViewById(R.id.cEnterMail);
         cPassword = findViewById(R.id.cEnterPassword);
         cBtnCreate = findViewById(R.id.cBtnCreate);
-        cAuth = FirebaseAuth.getInstance();
-        cRef = FirebaseDatabase.getInstance().getReference().child("users");
         cBtnCreate.setOnClickListener(view -> {
             createAccount();
         });

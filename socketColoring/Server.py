@@ -36,13 +36,9 @@ config = {
 IP = "0.0.0.0"
 PORT = 2106
 SIZE = 256
+
 num_firebase = firebase.FirebaseApplication("https://coloringapp-a530a-default-rtdb.firebaseio.com/", None)
-image = ""
-user_uid = " "
-
 rfirebase = pyrebase.initialize_app(config)
-
-
 storage = rfirebase.storage()
 online_now = []
 online_lock = threading.Lock()
@@ -85,9 +81,7 @@ def get_user_number(user_uid):
 
 
 def display_image(photoarr):
-    global image
     stream = BytesIO(photoarr)
-    # image = Image.open(stream).convert("RGBA")
     image = Image.open(stream).convert("RGB")
     # image = image.convert("LA")
     stream.close()
@@ -104,7 +98,6 @@ def coloring(image):
     img_lab = transforms.ToTensor()(img_lab)
     L = img_lab[[0], ...] / 50. - 1.
     L = L[None, :]
-    # L.shape
     #coloring
     with torch.no_grad():
         fake_color = model(L)

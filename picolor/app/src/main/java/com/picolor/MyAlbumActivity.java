@@ -40,16 +40,14 @@ public class MyAlbumActivity extends AppCompatActivity {
     private Button aBtnNext;
     private Button aBtnDownload;
     private ImageView aImageView;
-    private FirebaseAuth aAuth;
-    private DatabaseReference aRef;
+    private final static FirebaseAuth aAuth = FirebaseAuth.getInstance();
 
-    private FirebaseStorage aStorage;
-    private StorageReference aStorageRef;
+    private final static DatabaseReference aRef = FirebaseDatabase.getInstance().getReference().child("users");
+    private final static StorageReference aStorageRef = FirebaseStorage.getInstance().getReference();
     private StorageReference aImageRef;
     private String aId;
     private Integer user_num;
     private Integer currentNum;
-    private boolean checked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +57,10 @@ public class MyAlbumActivity extends AppCompatActivity {
         aImageView = findViewById(R.id.albumImage);
         aBtnNext = findViewById(R.id.aBtnNext);
         aBtnDownload = findViewById(R.id.aBtnDownload);
-        aAuth = FirebaseAuth.getInstance();
-        aRef = FirebaseDatabase.getInstance().getReference().child("users");
         aId = aAuth.getCurrentUser().getUid();
         currentNum = 0;
-        aStorage = FirebaseStorage.getInstance();
-        aStorageRef = aStorage.getReference();
-        //aImageRef = aStorageRef.child("name.jpg");
-        Boolean checked = false;
+
+
 
 
         aBtnNext.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +69,7 @@ public class MyAlbumActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        getNumber();
+                        getNumber(currentNum);
                         currentNum = currentNum + 1;
                         //Toast.makeText(MyAlbumActivity.this, Integer.toString(user_num), Toast.LENGTH_SHORT).show();
                         //changePhoto();
@@ -101,7 +95,7 @@ public class MyAlbumActivity extends AppCompatActivity {
         });
 
     }
-    private void getNumber()
+    private void getNumber(int currentNum)
     {
         aRef.child(aId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -109,7 +103,7 @@ public class MyAlbumActivity extends AppCompatActivity {
                 String sNum = (String) snapshot.getValue();
                 user_num = Integer.parseInt(sNum);
                 //Toast.makeText(MyAlbumActivity.this, Integer.toString(user_num), Toast.LENGTH_SHORT).show();
-                changePhoto(user_num);
+                changePhoto(user_num, currentNum);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -119,7 +113,7 @@ public class MyAlbumActivity extends AppCompatActivity {
 
     }
 
-    private void changePhoto(Integer user_num)
+    private void changePhoto(int user_num, int currentNum)
     {
         //if user has no photos
         if (user_num == 0)

@@ -64,7 +64,6 @@ public class UploadActivity extends AppCompatActivity {
     private Button btnColoring;
     private Button btnOnline;
     private Button btnSave;
-    private Intent recIntent;
     FirebaseAuth uAuth;
     DatabaseReference uRef;
     DatabaseReference uOnlineRef;
@@ -74,7 +73,7 @@ public class UploadActivity extends AppCompatActivity {
     private String uid;
     private String stringBytesphoto;
     public static final int SERVER_PORT = 2106;
-    public static final String SERVER_IP = "192.168.42.101";
+    public static final String SERVER_IP = "192.168.1.248";
     //String urlPost = "http://10.0.2.2:2106/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +91,10 @@ public class UploadActivity extends AppCompatActivity {
 
         uStorage = FirebaseStorage.getInstance();
         uStorageRef = uStorage.getReference();
-//        SERVER_PORT = 2106;
-//        SERVER_IP = "192.168.1.248";
+
 
         Random rnd = new Random();
-        recIntent = getIntent();
+        Intent recIntent = getIntent();
         //gets the user's chosen photo from 'main activity'
         Uri recUri = (Uri) recIntent.getParcelableExtra("sentImage");
         //show photo in imageview
